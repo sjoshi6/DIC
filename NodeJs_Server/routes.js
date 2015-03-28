@@ -1,4 +1,3 @@
-var requests = require('./requests');
 var request = require('request');
 
 module.exports = function(app) {
