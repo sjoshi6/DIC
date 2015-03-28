@@ -12,10 +12,18 @@ Con_sec="dfgOilCylFKjOXRwXQdu5CHDsdRJA19tJA6BM1VuyVPPd5X8MW"
 
 class Stream_Listener(StreamListener):
 
+    def __init__(self):
+        self.count=0
+
     def on_data(self, data):
         value=json.loads(data)
         r=requests.post('http://localhost:8181/pushjson',json=value)
-        print(r.status_code)
+
+        self.count=self.count+1
+        if(self.count%20==0):
+            response=requests.get('http://localhost:8181/tweet_hash_counter')
+            print(response)
+        #print(r.status_code)
         return True
 
     def on_error(self, status):
