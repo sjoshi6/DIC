@@ -3,8 +3,7 @@ from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
 import json
-import urllib2
-import urllib
+import requests
 
 Acc_Tok="3120279203-ZGGdoVNkg5ydlH4JVZHwxz4uDxB1wzOfvwCg1vZ"
 Acc_Sec="YX59L7QZVHA9VcrNXsOjaKmjSptHxnG4jNpeGXjN0J6xh"
@@ -14,11 +13,9 @@ Con_sec="dfgOilCylFKjOXRwXQdu5CHDsdRJA19tJA6BM1VuyVPPd5X8MW"
 class Stream_Listener(StreamListener):
 
     def on_data(self, data):
-        url = 'http://localhost:8181/pushjson'
-        data = json.loads(data)
-	    value = urllib.urlencode(data)
-	    f = urllib2.urlopen(url,value)
-        f.close()
+        value=json.loads(data)
+        r=requests.post('http://localhost:8181/pushjson',value)
+        print(r.status_code)
         return True
 
     def on_error(self, status):
