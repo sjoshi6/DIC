@@ -14,7 +14,7 @@ class Stream_Listener(StreamListener):
 
     def on_data(self, data):
         value=json.loads(data)
-        r=requests.post('http://localhost:8181/pushjson',value)
+        r=requests.post('http://localhost:8181/pushjson',json=value)
         print(r.status_code)
         return True
 
