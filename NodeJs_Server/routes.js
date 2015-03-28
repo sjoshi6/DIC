@@ -13,19 +13,19 @@ app.post('/pushjson',function(req,res){
                                 console.log(data_json.text)
                                 var tweet_hash_text=data_json.text
 
-                                if(hash_counter.tweet_hash_text)
+                                if(hash_counter[tweet_hash_text])
                                 {
-                                    hash_counter.tweet_hash_text = hash_counter.tweet_hash_text + 1
+                                    hash_counter[tweet_hash_text] = hash_counter[tweet_hash_text] + 1
                                 }
                                 else
                                 {
-                                  hash_counter.tweet_hash_text = 1
+                                  hash_counter[tweet_hash_text] = 1
                                 }
 
                               });
 
                               console.log(hash_counter);
-                              
+
                               res.json('');
 
 });
