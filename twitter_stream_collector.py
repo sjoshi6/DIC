@@ -43,7 +43,7 @@ class Stream_Listener(StreamListener):
         print('======================')
         start_tweet=count-window_size
         end_tweet=count
-        print('Top Tweets between'+str(start_tweet)+'--'+str(end_tweet))
+        print('Top HashTags in Tweets between--> tweet:'+str(start_tweet)+' and tweet:'+str(end_tweet))
         for elem in asc_sorted:
              print("{0}: {1}".format(*elem))
         print('======================')
