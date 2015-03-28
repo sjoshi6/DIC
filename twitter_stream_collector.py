@@ -27,4 +27,4 @@ if __name__ == '__main__':
     auth.set_access_token(Acc_Tok, Acc_Sec)
 
     stream = Stream(auth, l)
-    stream.filter(track=['#'],languages=['English'])
+    stream.filter(track=['#'],languages=['en'])
