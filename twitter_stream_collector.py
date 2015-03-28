@@ -22,12 +22,22 @@ class Stream_Listener(StreamListener):
         self.count=self.count+1
         if(self.count%20==0):
             response=requests.get('http://localhost:8181/tweet_hash_counter')
-            print(response)
-        #print(r.status_code)
+            print(response.text)
+            printTopK(response.text)
+
+        print("Tweet count"+str(self.count))
         return True
+
 
     def on_error(self, status):
         print(status)
+
+
+    def printTopK(self,response):
+        k=2
+        asc_sorted = sorted(response.iteritems(), key=lambda x:-x[1])[:k]
+        for elem in asc_sorted:
+             print("{0}: {1}".format(*elem))
 
 if __name__ == '__main__':
     l = Stream_Listener()

@@ -31,7 +31,9 @@ app.post('/pushjson',function(req,res){
 });
 
 app.get('/tweet_hash_counter',function(req,res){
-          res.json(hash_counter);
+          var json_reply = hash_counter;
+          hash_counter={}
+          res.json(json_reply);
 })
 
 }
