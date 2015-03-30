@@ -25,7 +25,13 @@ app.post('/pushjson',function(req,res){
                                 console.log(popped_list)
                                 //iterate over all the hashtags in popped element and decrement the hashcount
                                 popped_list.forEach(function(data){
-                                  hash_counter[data.text] = hash_counter[data.text] - 1
+                                        hash_counter[data.text] = hash_counter[data.text] - 1
+
+                                        if(hash_counter[data.text] == 0)
+                                        {
+                                          hash_counter[data.text] = null
+                                          delete hash_counter[data.text]
+                                        }
                                 });
                                 // Add the element at the end of slider window
                                 slidingwindow.push(hashtags_arr)
