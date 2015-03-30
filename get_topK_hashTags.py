@@ -7,8 +7,8 @@ def printTopK(k):
     response=requests.get('http://localhost:8181/tweet_hash_counter')
     data_topK=json.loads(response.text)
 
-    if data_topK.length() < topk:
-        topk = data_topK.length()
+    if len(data_topK) < topk:
+        topk = len(data_topK)
 
     asc_sorted = sorted(data_topK.iteritems(), key=lambda x:-x[1])[:topk]
 
