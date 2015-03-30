@@ -4,7 +4,7 @@ module.exports = function(app) {
 
 var hash_counter={}
 var slidingwindow=[]
-
+var topk=20
 app.post('/pushjson',function(req,res){
 
                               //extract the hashtag array from message
@@ -65,7 +65,7 @@ app.get('/tweet_hash_counter',function(req,res){
           res.json(json_reply);
 })
 
-app.get('/get_top_20_tweets',function(req,res){
+app.get('/get_top_k_tweets',function(req,res){
 
         var reply_arr = []
 
@@ -76,7 +76,15 @@ app.get('/get_top_20_tweets',function(req,res){
 
         reply_arr.sort(function(a,b){return a[1]-b[1] });
         reply_arr.reverse();
-        res.send(reply_arr)
+
+        var k=topk
+
+        if(reply_arr.length < k)
+        {
+          k=reply_arr.length
+        }
+
+        res.send(reply_arr.slice(0,k+1));
 });
 
 
