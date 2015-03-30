@@ -85,10 +85,10 @@ app.get('/get_top_k_tweets',function(req,res){
         }
 
        var send_arr=reply_arr.slice(0,k);
-       var string_reply
+       var string_reply ="Top "+topk+" hashtags are : <br> =============== <br>"
 
        send_arr.forEach(function(data){
-         string_reply=string_reply+"\n"+String(data)
+         string_reply=string_reply+"<br>"+String(data)
        })
 
         res.send(string_reply);
