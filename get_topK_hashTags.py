@@ -3,7 +3,7 @@ import requests
 import sys
 
 def printTopK(k):
-    topk=k
+    topk=int(k)
     response=requests.get('http://localhost:8181/tweet_hash_counter')
     data_topK=json.loads(response.text)
     asc_sorted = sorted(data_topK.iteritems(), key=lambda x:-x[1])[:topk]
