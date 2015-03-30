@@ -17,37 +17,14 @@ class Stream_Listener(StreamListener):
 
     def on_data(self, data):
 
-        window_size_in_tweets=20
         value=json.loads(data)
         r=requests.post('http://localhost:8181/pushjson',json=value)
-
         self.count=self.count+1
-        if(self.count%window_size_in_tweets==0):
-            response=requests.get('http://localhost:8181/tweet_hash_counter')
-            print(response.text)
-            self.printTopK(response.text,self.count,window_size_in_tweets)
-
         print("Tweet count"+str(self.count))
         return True
 
-
     def on_error(self, status):
         print(status)
-
-
-    def printTopK(self,response,count,window_size):
-        topk=2
-        data_topK=json.loads(response)
-        asc_sorted = sorted(data_topK.iteritems(), key=lambda x:-x[1])[:topk]
-
-        print('======================')
-        start_tweet=count-window_size
-        end_tweet=count
-        print('Top HashTags in Tweets between--> tweet:'+str(start_tweet)+' and tweet:'+str(end_tweet))
-        for elem in asc_sorted:
-             print("{0}: {1}".format(*elem))
-        print('======================')
-
 
 if __name__ == '__main__':
     l = Stream_Listener()
