@@ -65,4 +65,19 @@ app.get('/tweet_hash_counter',function(req,res){
           res.json(json_reply);
 })
 
+app.get('/get_top_20_tweets',function(req,res){
+
+        var reply_arr = []
+
+        for(keyy in hash_counter)
+        {
+          reply_arr.push([keyy,hash_counter[keyy]])
+        }
+
+        reply_arr.sort(function(a,b){return a[1]-b[1] });
+        reply_arr.reverse();
+        res.send(reply_arr)
+});
+
+
 }
