@@ -84,7 +84,14 @@ app.get('/get_top_k_tweets',function(req,res){
           k=reply_arr.length
         }
 
-        res.send(reply_arr.slice(0,k+1));
+       var send_arr=reply_arr.slice(0,k);
+       var string_reply
+
+       send_arr.forEach(function(data){
+         string_reply=string_reply+"\n"+String(data)
+       })
+
+        res.send(string_reply);
 });
 
 
