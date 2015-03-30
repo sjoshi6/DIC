@@ -12,7 +12,7 @@ app.post('/pushjson',function(req,res){
                               var hashtags_arr=req.body.entities.hashtags
 
                               //untill window reaches windowsize=50 simply add elements to slider window.
-                              if(slidingwindow.length <=50)
+                              if(slidingwindow.length < 51)
                               {
                                 slidingwindow.push(hashtags_arr)
                               }
@@ -33,7 +33,7 @@ app.post('/pushjson',function(req,res){
                               }
 
                                 hashtags_arr.forEach(function(data_json){
-                                console.log(data_json.text)
+                              //  console.log(data_json.text)
                                 var tweet_hash_text=data_json.text
 
                                 if(hash_counter[tweet_hash_text])
@@ -47,7 +47,7 @@ app.post('/pushjson',function(req,res){
 
                               });
 
-                              console.log(hash_counter);
+                            //  console.log(hash_counter);
 
                               res.json('');
 
