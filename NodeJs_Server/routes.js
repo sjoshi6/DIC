@@ -4,15 +4,23 @@ module.exports = function(app) {
 
 var hash_counter={}
 var slidingwindow=[]
-var topk=20
+
+var args = process.argv.slice(2);
+var topk = args[0]
+var window_size = args[1]
+
+console.log('topk is'+topk);
+console.log('window size is'+window_size);
+
+
 app.post('/pushjson',function(req,res){
 
                               //extract the hashtag array from message
                               console.log(req.body.entities.hashtags);
                               var hashtags_arr=req.body.entities.hashtags
 
-                              //untill window reaches windowsize=50 simply add elements to slider window.
-                              if(slidingwindow.length < 51)
+                              //untill window reaches windowsize simply add elements to slider window.
+                              if(slidingwindow.length < (window_size+1))
                               {
                                 slidingwindow.push(hashtags_arr)
                               }
